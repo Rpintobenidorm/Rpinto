@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Variables
+$header-height: 60px;
+$nav-height: 56px;
+$combined-height: $header-height + $nav-height;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: $combined-height;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+// Header fijo arriba
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1050; // mayor que el nav
+}
+
+// Navbar fijo debajo del header
+.navbar {
+  position: fixed;
+  top: $header-height;
+  width: 100%;
+  height: $nav-height;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1040;
+
+  a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: #ffcc00;
+      border-bottom: 2px solid #ffcc00;
+    }
+  }
+}
+
+// Secciones
+.seccion {
+  min-height: 100vh;
+  padding: $combined-height 1rem 2rem;
+  scroll-margin-top: $combined-height;
+  .container {
+    width: 100%;
+  }
+  &#inicio {
+    background-color: #f8f9fa;
+  }
+  &#sobremi {
+    background-color: #e9ecef;
+  }
+  &#proyectos {
+    background-color: #dee2e6;
+  }
+  &#contacto {
+    background-color: #ced4da;
+  }
+}
+
+// Footer
+.footer {
+  background-color: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+// Responsive: navbar como hamburguesa en móvil
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 0;
+
+    a {
+      margin: 0.5rem 0;
+    }
+  }
+
+  .header {
+    justify-content: center;
+  }
+}
