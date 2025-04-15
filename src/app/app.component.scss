@@ -5,7 +5,7 @@
 }
 
 // Variables
-$header-height: 60px;
+$header-height: 120px;
 $nav-height: 56px;
 $combined-height: $header-height + $nav-height;
 
@@ -31,25 +31,43 @@ body {
   top: 0;
   width: 100%;
   height: $header-height;
-  background-color: #1e1e1e;
+  background-color: white;
   color: white;
   display: flex;
   align-items: center;
+  justify-content: center; /* Centra el logo */
   padding: 0 1rem;
-  z-index: 1050; // mayor que el nav
+  z-index: 1050;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
 }
 
-// Navbar fijo debajo del header
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
 .navbar {
   position: fixed;
   top: $header-height;
   width: 100%;
-  height: $nav-height;
   background-color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1040;
+  transition: max-height 0.3s ease, padding 0.3s ease;
 
   a {
     color: white;
@@ -66,7 +84,42 @@ body {
       border-bottom: 2px solid #ffcc00;
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
+    
+    &.open {
+      max-height: 500px; // suficientemente alto para mostrar los elementos
+      padding: 1rem;
+    }
+
+    a {
+      margin: 0.5rem 0;
+    }
+  }
 }
+
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: black;
+  cursor: pointer;
+  position: absolute; /* Lo coloca fuera del flujo */
+  left: 1rem; /* Pegado a la izquierda */
+  z-index: 1060; /* Asegúrate de que esté encima del logo */
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
 
 // Secciones
 .seccion {
@@ -79,7 +132,7 @@ body {
   &#inicio {
     background-color: #f8f9fa;
   }
-  &#sobremi {
+  &#sobrenosotros {
     background-color: #e9ecef;
   }
   &#proyectos {
@@ -98,19 +151,13 @@ body {
   padding: 1rem;
 }
 
-// Responsive: navbar como hamburguesa en móvil
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 0.5rem 0;
-
-    a {
-      margin: 0.5rem 0;
-    }
+  .header {
+    justify-content: center; /* Centra el logo */
   }
 
-  .header {
-    justify-content: center;
+  /* Muestra el botón de menú hamburguesa solo en móviles */
+  .burger-btn {
+    display: block; 
   }
 }

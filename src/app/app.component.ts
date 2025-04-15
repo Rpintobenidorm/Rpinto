@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'rpinto';
 
   activeSection: string = 'inicio';
+  isMenuOpen = false;
 
   constructor(
     private router: Router,
@@ -33,7 +34,7 @@ export class AppComponent {
   // Scrollspy
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const sections = ['inicio', 'sobremi', 'proyectos', 'contacto'];
+    const sections = ['inicio', 'sobrenosotros', 'proyectos', 'contacto'];
     for (const section of sections) {
       const el = document.getElementById(section);
       if (el) {
@@ -44,5 +45,9 @@ export class AppComponent {
         }
       }
     }
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;  // Cierra el menú al hacer click en cualquier opción
   }
 }

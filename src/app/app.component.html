@@ -1,29 +1,39 @@
-<header class="header">
-  <div class="logo fw-bold fs-4">MiLogo</div>
+<header
+  class="header d-flex justify-content-around align-items-center px-3 py-2"
+>
+  <!-- Botón hamburguesa solo en móvil -->
+  <button class="burger-btn" (click)="isMenuOpen = !isMenuOpen">☰</button>
+  <a [routerLink]="[]" fragment="inicio" class="logo-link d-inline-block">
+    <img src="assets/logo.jpg" alt="Logo RPinto" class="logo-img" />
+  </a>
 </header>
 
-<nav class="navbar">
+<nav class="navbar" [class.open]="isMenuOpen">
   <a
     [routerLink]="[]"
     fragment="inicio"
+    (click)="closeMenu()"
     [class.active]="activeSection === 'inicio'"
     >Inicio</a
   >
   <a
     [routerLink]="[]"
-    fragment="sobremi"
-    [class.active]="activeSection === 'sobremi'"
-    >Sobre mí</a
+    fragment="sobrenosotros"
+    (click)="closeMenu()"
+    [class.active]="activeSection === 'sobrenosotros'"
+    >Sobre nosotros</a
   >
   <a
     [routerLink]="[]"
     fragment="proyectos"
+    (click)="closeMenu()"
     [class.active]="activeSection === 'proyectos'"
     >Proyectos</a
   >
   <a
     [routerLink]="[]"
     fragment="contacto"
+    (click)="closeMenu()"
     [class.active]="activeSection === 'contacto'"
     >Contacto</a
   >
@@ -35,9 +45,9 @@
     <p>Bienvenido a mi web.</p>
   </section>
 
-  <section id="sobremi" class="seccion container-fluid">
-    <h2>Sobre mí</h2>
-    <p>Esta es la sección sobre mí.</p>
+  <section id="sobrenosotros" class="seccion container-fluid">
+    <h2>Sobre nosotros</h2>
+    <p>Esta es la sección sobre nosotros.</p>
   </section>
 
   <section id="proyectos" class="seccion container-fluid">
@@ -52,5 +62,5 @@
 </main>
 
 <footer class="footer">
-  <p>&copy; 2025 MiNombre</p>
+  <p>&copy; Made with ❤️ &#64;2025 | Developer: <a href="mailto:mhaskimr@gmail.com">MHH</a></p>
 </footer>
