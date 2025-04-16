@@ -2,10 +2,11 @@ import { ViewportScroller } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
+import { SliderComponent } from './componentes/slider/slider.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [RouterModule, SliderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
