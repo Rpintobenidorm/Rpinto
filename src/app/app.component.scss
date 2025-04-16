@@ -1,14 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 // Variables
 $header-height: 120px;
 $nav-height: 56px;
 $combined-height: $header-height + $nav-height;
 
+// Base styles
 html {
   scroll-behavior: smooth;
   scroll-padding-top: $combined-height;
@@ -25,7 +20,7 @@ body {
   overflow-x: hidden;
 }
 
-// Header fijo arriba
+// Header styles
 .header {
   position: fixed;
   top: 0;
@@ -35,11 +30,10 @@ body {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centra el logo */
+  justify-content: center; // Centra el logo
   padding: 0 1rem;
   z-index: 1050;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-link {
@@ -58,6 +52,8 @@ body {
     transform: scale(1.2);
   }
 }
+
+// Navbar styles
 .navbar {
   position: fixed;
   top: $header-height;
@@ -92,7 +88,7 @@ body {
     overflow: hidden;
     max-height: 0;
     padding: 0;
-    
+
     &.open {
       max-height: 500px; // suficientemente alto para mostrar los elementos
       padding: 1rem;
@@ -111,39 +107,43 @@ body {
   font-size: 3rem;
   color: black;
   cursor: pointer;
-  position: absolute; /* Lo coloca fuera del flujo */
-  left: 1rem; /* Pegado a la izquierda */
-  z-index: 1060; /* Asegúrate de que esté encima del logo */
+  position: absolute; // Lo coloca fuera del flujo
+  left: 1rem; // Pegado a la izquierda
+  z-index: 1060; // Asegúrate de que esté encima del logo
 
   @media (max-width: 768px) {
     display: block;
   }
 }
 
-
-// Secciones
+// Section styles
 .seccion {
   min-height: 100vh;
   padding: $combined-height 1rem 2rem;
   scroll-margin-top: $combined-height;
+
   .container {
     width: 100%;
   }
+
   &#inicio {
     background-color: #f8f9fa;
   }
+
   &#sobrenosotros {
     background-color: #e9ecef;
   }
+
   &#proyectos {
     background-color: #dee2e6;
   }
+
   &#contacto {
     background-color: #ced4da;
   }
 }
 
-// Footer
+// Footer styles
 .footer {
   background-color: #1e1e1e;
   color: white;
@@ -153,11 +153,11 @@ body {
 
 @media (max-width: 768px) {
   .header {
-    justify-content: center; /* Centra el logo */
+    justify-content: center; // Centra el logo
   }
 
-  /* Muestra el botón de menú hamburguesa solo en móviles */
+  // Muestra el botón de menú hamburguesa solo en móviles
   .burger-btn {
-    display: block; 
+    display: block;
   }
 }
