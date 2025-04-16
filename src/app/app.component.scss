@@ -1,36 +1,35 @@
-// Variables
+// ================= VARIABLES =================
 $header-height: 120px;
 $nav-height: 56px;
 $combined-height: $header-height + $nav-height;
+$color-r: #009ce1;
+$color-pinto: #e3071f;
+$color-light-bg: #f8f9fa;
+$color-dark-text: #333;
 
-// Base styles
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: $combined-height;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
+// ================= BASE STYLES =================
 html,
 body {
+  margin: 0;
   width: 100%;
   overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: $combined-height;
+  background-color: $color-light-bg;
 }
 
-// Header styles
+// ================= HEADER =================
 .header {
+  background-color: $color-r;
   position: fixed;
   top: 0;
   width: 100%;
   height: $header-height;
   background-color: white;
-  color: white;
   display: flex;
   align-items: center;
-  justify-content: center; // Centra el logo
+  justify-content: center;
   padding: 0 1rem;
   z-index: 1050;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -53,8 +52,9 @@ body {
   }
 }
 
-// Navbar styles
+// ================= NAVBAR =================
 .navbar {
+  background-color: $color-pinto;
   position: fixed;
   top: $header-height;
   width: 100%;
@@ -65,22 +65,44 @@ body {
   z-index: 1040;
   transition: max-height 0.3s ease, padding 0.3s ease;
 
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
   a {
     color: white;
     text-decoration: none;
-    margin: 0 1rem;
     font-weight: 500;
 
     &:hover {
       text-decoration: underline;
+      color: $color-r;
     }
 
     &.active {
-      color: #ffcc00;
-      border-bottom: 2px solid #ffcc00;
+      color: $color-pinto;
+      border-bottom: 2px solid $color-pinto;
     }
   }
 
+  // === Estilo para pantallas grandes ===
+  @media (min-width: 769px) {
+    ul {
+      display: flex;
+
+      li {
+        margin: 0 1rem;
+      }
+
+      a {
+        margin: 0 1rem;
+      }
+    }
+  }
+
+  // === Estilo para móviles ===
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -90,8 +112,18 @@ body {
     padding: 0;
 
     &.open {
-      max-height: 500px; // suficientemente alto para mostrar los elementos
+      height: 500px;
       padding: 1rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    li {
+      margin: 0.5rem 0;
     }
 
     a {
@@ -100,33 +132,37 @@ body {
   }
 }
 
+// ================= BURGER BUTTON =================
 .burger-btn {
   display: none;
   background: none;
   border: none;
   font-size: 3rem;
-  color: black;
+  color: $color-pinto;
   cursor: pointer;
-  position: absolute; // Lo coloca fuera del flujo
-  left: 1rem; // Pegado a la izquierda
-  z-index: 1060; // Asegúrate de que esté encima del logo
+  position: absolute;
+  left: 1rem;
+  z-index: 1060;
 
   @media (max-width: 768px) {
     display: block;
   }
 }
 
-// Section styles
+// ================= SECTIONS =================
 .seccion {
   min-height: 100vh;
   padding: $combined-height 1rem 2rem;
   scroll-margin-top: $combined-height;
 
+  h2 {
+    color: $color-pinto;
+  }
   .container {
     width: 100%;
   }
 
-  &#inicio {
+  &#slider {
     background-color: #f8f9fa;
   }
 
@@ -143,21 +179,59 @@ body {
   }
 }
 
-// Footer styles
+// ================= FOOTER =================
 .footer {
-  background-color: #1e1e1e;
+  background-color: $color-r;
   color: white;
   text-align: center;
   padding: 1rem;
 }
 
+// ================= DRAWER MENU (MOVIL) =================
 @media (max-width: 768px) {
-  .header {
-    justify-content: center; // Centra el logo
-  }
+  .sub-menu {
+    position: fixed;
+    top: $header-height; // empieza justo debajo del header
+    left: -210px;
+    height: calc(100vh - #{$header-height}); // ocupa el resto
+    width: 210px;
+    background-color: $color-r;
+    transition: all 0.3s ease;
+    z-index: 1045;
+    overflow-y: auto;
+    padding: 1rem;
 
-  // Muestra el botón de menú hamburguesa solo en móviles
-  .burger-btn {
-    display: block;
+    &.oppenned {
+      left: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    li {
+      margin: 1rem 0;
+
+      a {
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 30px;
+
+        &:hover {
+          color: $color-pinto;
+        }
+
+        &.active {
+          color: $color-pinto;
+        }
+      }
+    }
   }
 }

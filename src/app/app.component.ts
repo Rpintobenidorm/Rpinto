@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
 export class AppComponent {
   title = 'rpinto';
 
-  activeSection: string = 'inicio';
+  activeSection: string = 'slider';
   isMenuOpen = false;
 
   constructor(
@@ -34,7 +34,7 @@ export class AppComponent {
   // Scrollspy
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const sections = ['inicio', 'sobrenosotros', 'proyectos', 'contacto'];
+    const sections = ['slider', 'sobrenosotros', 'proyectos', 'contacto'];
     for (const section of sections) {
       const el = document.getElementById(section);
       if (el) {
@@ -50,4 +50,12 @@ export class AppComponent {
   closeMenu() {
     this.isMenuOpen = false;  // Cierra el menú al hacer click en cualquier opción
   }
+
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+
+  
 }

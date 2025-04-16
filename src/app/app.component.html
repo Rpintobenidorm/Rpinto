@@ -3,44 +3,39 @@
 >
   <!-- Botón hamburguesa solo en móvil -->
   <button class="burger-btn" (click)="isMenuOpen = !isMenuOpen">☰</button>
-  <a [routerLink]="[]" fragment="inicio" class="logo-link d-inline-block">
+  <a [routerLink]="[]" fragment="slider" class="logo-link d-inline-block">
     <img src="assets/logo.jpg" alt="Logo RPinto" class="logo-img" />
   </a>
 </header>
 
-<nav class="navbar" [class.open]="isMenuOpen">
-  <a
-    [routerLink]="[]"
-    fragment="inicio"
-    (click)="closeMenu()"
-    [class.active]="activeSection === 'inicio'"
-    >Inicio</a
-  >
-  <a
-    [routerLink]="[]"
-    fragment="sobrenosotros"
-    (click)="closeMenu()"
-    [class.active]="activeSection === 'sobrenosotros'"
-    >Sobre nosotros</a
-  >
-  <a
-    [routerLink]="[]"
-    fragment="proyectos"
-    (click)="closeMenu()"
-    [class.active]="activeSection === 'proyectos'"
-    >Proyectos</a
-  >
-  <a
-    [routerLink]="[]"
-    fragment="contacto"
-    (click)="closeMenu()"
-    [class.active]="activeSection === 'contacto'"
-    >Contacto</a
-  >
+<!-- Botón hamburguesa -->
+<button class="c-hamburger c-hamburger--htx" 
+(click)="toggleMenu()" 
+[class.is-active]="isMenuOpen">
+<span>toggle menu</span>
+</button>
+
+<!-- Drawer nav -->
+<nav class="sub-menu" [class.oppenned]="isMenuOpen">
+  <ul class="list-unstyled">
+    <li><a [routerLink]="[]" fragment="slider" (click)="closeMenu()" [class.active]="activeSection === 'slider'">Inicio</a></li>
+    <li><a [routerLink]="[]" fragment="sobrenosotros" (click)="closeMenu()" [class.active]="activeSection === 'sobrenosotros'">Sobre nosotros</a></li>
+    <li><a [routerLink]="[]" fragment="proyectos" (click)="closeMenu()" [class.active]="activeSection === 'proyectos'">Proyectos</a></li>
+    <li><a [routerLink]="[]" fragment="contacto" (click)="closeMenu()" [class.active]="activeSection === 'contacto'">Contacto</a></li>
+  </ul>
+</nav>
+
+<nav class="navbar d-none d-md-flex">
+  <ul class="list-unstyled d-flex m-0">
+    <li><a [routerLink]="[]" fragment="slider" [class.active]="activeSection === 'slider'">Inicio</a></li>
+    <li><a [routerLink]="[]" fragment="sobrenosotros" [class.active]="activeSection === 'sobrenosotros'">Sobre nosotros</a></li>
+    <li><a [routerLink]="[]" fragment="proyectos" [class.active]="activeSection === 'proyectos'">Proyectos</a></li>
+    <li><a [routerLink]="[]" fragment="contacto" [class.active]="activeSection === 'contacto'">Contacto</a></li>
+  </ul>
 </nav>
 
 <main>
-  <section id="inicio" class="seccion container-fluid">
+  <section id="slider" class="seccion container-fluid">
     <h2>Inicio</h2>
     <p>Bienvenido a mi web.</p>
   </section>
