@@ -1,10 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import Swiper from 'swiper';
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
+
 
 Swiper.use([Autoplay, Navigation, Pagination, EffectFade]);
 
