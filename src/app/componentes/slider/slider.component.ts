@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import Swiper from 'swiper';
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -15,23 +15,27 @@ Swiper.use([Autoplay, Navigation, Pagination, EffectFade]);
   styleUrl: './slider.component.scss'
 })
 export class SliderComponent implements AfterViewInit {
+  
+  @ViewChild('swiperContainer') swiperContainer!: ElementRef;
+
   ngAfterViewInit(): void {
-    new Swiper('.swiper', {
+    new Swiper(this.swiperContainer.nativeElement, {
       loop: true,
       autoplay: {
-        delay: 2000,
+        delay: 5000,
         disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
-        clickable: true
+        clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.swiper-button-prev',
       },
       effect: 'fade',
-      speed: 1000
+      speed: 1000,
     });
   }
+  
 }
