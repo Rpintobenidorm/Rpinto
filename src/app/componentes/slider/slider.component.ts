@@ -30,7 +30,7 @@ export class SliderComponent implements AfterViewInit {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      effect: 'fade',
+      effect: "cards",
       speed: 1000,
     });
   }
