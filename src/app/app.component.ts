@@ -3,10 +3,14 @@ import { Component, HostListener } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { SliderComponent } from './componentes/slider/slider.component';
+import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { OpinionesComponent } from "./componentes/opiniones/opiniones.component"; 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, SliderComponent],
+  imports: [RouterModule, SliderComponent, NosotrosComponent, OpinionesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -29,6 +33,13 @@ export class AppComponent {
           this.viewportScroller.scrollToAnchor(tree.fragment!);
         }, 50);
       }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    AOS.init({
+      duration: 1000, // duración de las animaciones en ms
+      once: true, // si quieres que solo se animen una vez
     });
   }
 
@@ -56,7 +67,5 @@ export class AppComponent {
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
-
-
   
 }
