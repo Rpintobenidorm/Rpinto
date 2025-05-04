@@ -1,21 +1,14 @@
 .marcas-slider {
     padding: 2rem 0;
-  
     .swiper-slide {
       display: flex;
       align-items: center;
       justify-content: center;
-  
       img {
         max-height: 80px;
         width: auto;
         object-fit: contain;
-        filter: grayscale(100%);
-        transition: filter 0.3s;
-  
-        &:hover {
-          filter: grayscale(0%);
-        }
+        transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
       }
     }
   }

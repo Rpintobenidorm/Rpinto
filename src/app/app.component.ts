@@ -7,10 +7,13 @@ import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { OpinionesComponent } from "./componentes/opiniones/opiniones.component"; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPhone, faEnvelope, faMobileAlt  } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, SliderComponent, NosotrosComponent, OpinionesComponent],
+  imports: [RouterModule, SliderComponent, NosotrosComponent, OpinionesComponent, FontAwesomeModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -19,6 +22,15 @@ export class AppComponent {
 
   activeSection: string = 'slider';
   isMenuOpen = false;
+  // iconos
+  iconoTelefono = faPhone;
+  iconoWhatsapp = faWhatsapp;
+  iconoCorreo = faEnvelope;
+  iconoMovil = faMobileAlt;
+
+  isContactoInfoVisible = false;
+
+
 
   constructor(
     private router: Router,
@@ -66,6 +78,10 @@ export class AppComponent {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleContactoInfo() {
+    this.isContactoInfoVisible = !this.isContactoInfoVisible;
   }
   
 }

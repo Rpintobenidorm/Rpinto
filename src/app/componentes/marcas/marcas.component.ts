@@ -11,22 +11,21 @@ export class MarcasComponent {
   ngAfterViewInit(): void {
     setTimeout(() => {
       // Slider de marcas
-      // Dentro de ngAfterViewInit
       new Swiper('.marcasSwiper', {
         loop: true,
         slidesPerView: 5,
         spaceBetween: 30,
-        speed: 3000, // velocidad de deslizamiento (cuanto más alto, más suave)
+        speed:4000, // velocidad de deslizamiento (cuanto más alto, más suave)
         autoplay: {
           delay: 0, // empieza inmediatamente
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: false,
         },
         freeMode: {
           enabled: true,
           momentum: false,
         },
-        grabCursor: true,
+        grabCursor: false,
         breakpoints: {
           0: {
             slidesPerView: 2,

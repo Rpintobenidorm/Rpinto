@@ -1,4 +1,4 @@
-@use '../styles.variables' as vars;
+@use "../styles.variables" as vars;
 
 // ================= BASE STYLES =================
 html,
@@ -12,11 +12,49 @@ body {
   background-color: vars.$color-light-bg;
 }
 
+// ================= Cabecera Contacto =================
+#ContactInformation {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 20px;
+  background-color: #3082d4;
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  .contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  .icono-blanco {
+    color: white;
+    font-size: 24px;
+  }
+
+}
+@media (max-width: 768px) {
+  #ContactInformation {
+    display: none;
+  }
+  .header {
+    top: 0 !important;
+  }
+}
+
 // ================= HEADER =================
 .header {
   background-color: vars.$color-r;
   position: fixed;
-  top: 0;
+  top: 50px;
   width: 100%;
   height: vars.$header-height;
   background-color: white;
@@ -26,22 +64,63 @@ body {
   padding: 0 1rem;
   z-index: 1050;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 100px;
+    width: auto;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }
 
-.logo-link {
-  text-decoration: none;
+.contact-popup {
+  position: fixed;
+  top: 50px; 
+  right: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  padding: 1rem;
+  border-radius: 8px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  .contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: vars.$color-dark-text;
+    text-decoration: none;
+  }
+
+  fa-icon {
+    color: vars.$color-pinto;
+  }
 }
 
-.logo-img {
-  height: 100px;
-  width: auto;
-  transition: transform 0.2s ease;
+.contact-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: vars.$color-pinto;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
 
-  &:hover {
-    transform: scale(1.2);
+  @media (min-width: 769px) {
+    display: none;
   }
 }
 
@@ -49,7 +128,7 @@ body {
 .navbar {
   background-color: vars.$color-pinto;
   position: fixed;
-  top: vars.$header-height;
+  top: vars.$combined-height;
   width: 100%;
   background-color: #333;
   display: flex;

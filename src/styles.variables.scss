@@ -1,7 +1,8 @@
 // ================= VARIABLES =================
-$header-height: 120px;
+$contact-height: 50px;
+$header-height: 100px;
 $nav-height: 56px;
-$combined-height: $header-height + $nav-height;
+$combined-height: $contact-height + $header-height;
 $color-r: #009ce1;
 $color-pinto: #e3071f;
 $color-light-bg: #f8f9fa;
