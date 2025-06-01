@@ -24,7 +24,7 @@ import { SliderTrabajosComponent } from "./componentes/sliderTrabajos/slider-tra
     RouterModule,
     SliderComponent,
     NosotrosComponent,
-    OpinionesComponent,
+    //OpinionesComponent,
     FontAwesomeModule,
     NgClickOutsideDirective,
     SliderTrabajosComponent
