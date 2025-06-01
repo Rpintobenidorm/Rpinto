@@ -1,19 +1,31 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { SliderComponent } from './componentes/slider/slider.component';
 import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { OpinionesComponent } from "./componentes/opiniones/opiniones.component"; 
+import { OpinionesComponent } from './componentes/opiniones/opiniones.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPhone, faEnvelope, faMobileAlt  } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPhone,
+  faEnvelope,
+  faMobileAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { NgClickOutsideDirective } from 'ng-click-outside2';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, SliderComponent, NosotrosComponent, OpinionesComponent, FontAwesomeModule],
+  imports: [
+    RouterModule,
+    SliderComponent,
+    NosotrosComponent,
+    OpinionesComponent,
+    FontAwesomeModule,
+    NgClickOutsideDirective,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -30,22 +42,22 @@ export class AppComponent {
 
   isContactoInfoVisible = false;
 
-
+  @ViewChild('drawer', { static: false }) drawerRef!: ElementRef;
 
   constructor(
     private router: Router,
     private viewportScroller: ViewportScroller
   ) {
-    this.router.events.pipe(
-      filter(e => e instanceof NavigationEnd)
-    ).subscribe(() => {
-      const tree = this.router.parseUrl(this.router.url);
-      if (tree.fragment) {
-        setTimeout(() => {
-          this.viewportScroller.scrollToAnchor(tree.fragment!);
-        }, 50);
-      }
-    });
+    this.router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(() => {
+        const tree = this.router.parseUrl(this.router.url);
+        if (tree.fragment) {
+          setTimeout(() => {
+            this.viewportScroller.scrollToAnchor(tree.fragment!);
+          }, 50);
+        }
+      });
   }
 
   ngAfterViewInit(): void {
@@ -72,9 +84,8 @@ export class AppComponent {
   }
 
   closeMenu() {
-    this.isMenuOpen = false;  // Cierra el menú al hacer click en cualquier opción
+    this.isMenuOpen = false;
   }
-
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -83,5 +94,22 @@ export class AppComponent {
   toggleContactoInfo() {
     this.isContactoInfoVisible = !this.isContactoInfoVisible;
   }
-  
+
+  onClickedOutsideContacto(e: Event) {
+    this.isContactoInfoVisible = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInsideDrawer = this.drawerRef?.nativeElement.contains(
+      event.target
+    );
+    const isBurgerBtn = (event.target as HTMLElement).closest(
+      '.burger-btn, .c-hamburger'
+    );
+
+    if (!clickedInsideDrawer && !isBurgerBtn && this.isMenuOpen) {
+      this.closeMenu();
+    }
+  }
 }

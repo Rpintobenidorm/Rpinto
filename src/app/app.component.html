@@ -34,25 +34,24 @@
   </button>
 </header>
 
-
-  <!--Menu contacto movil -->
-  @if (isContactoInfoVisible) {
-    <div
-      class="contact-popup"
-      (clickOutside)="isContactoInfoVisible = false"
-    >
-      <a class="contact" href="tel:965053399">
-        <fa-icon [icon]="iconoTelefono"></fa-icon><span>965053399</span>
-      </a>
-      <a class="contact" href="tel:688888888">
-        <fa-icon [icon]="iconoMovil"></fa-icon><span>688 888 888</span>
-      </a>
-      <a class="contact" href="mailto:info@rpinto.es">
-        <fa-icon [icon]="iconoCorreo"></fa-icon><span>info&#64;rpinto.es</span>
-      </a>
-    </div>
-  }
-  
+<!--Menu contacto movil -->
+@if (isContactoInfoVisible) {
+<div
+  #popupContacto
+  class="contact-popup"
+  (clickOutside)="onClickedOutsideContacto($event)"
+>
+  <a class="contact" href="tel:965053399">
+    <fa-icon [icon]="iconoTelefono"></fa-icon><span>965053399</span>
+  </a>
+  <a class="contact" href="tel:688888888">
+    <fa-icon [icon]="iconoMovil"></fa-icon><span>688 888 888</span>
+  </a>
+  <a class="contact" href="mailto:info@rpinto.es">
+    <fa-icon [icon]="iconoCorreo"></fa-icon><span>info&#64;rpinto.es</span>
+  </a>
+</div>
+}
 
 <!-- Botón hamburguesa -->
 <button
@@ -62,7 +61,11 @@
 ></button>
 
 <!-- Drawer nav -->
-<nav class="sub-menu" [class.oppenned]="isMenuOpen">
+<nav
+  #drawer
+  class="sub-menu"
+  [class.oppenned]="isMenuOpen"
+>
   <ul class="list-unstyled">
     <li>
       <a

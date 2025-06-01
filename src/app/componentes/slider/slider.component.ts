@@ -19,16 +19,12 @@ export class SliderComponent implements AfterViewInit {
     new Swiper(this.swiperContainer.nativeElement, {
       loop: true,
       autoplay: {
-        delay: 5000,
+        delay: 3000,
         disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
       },
       effect: "cards",
       speed: 1000,
