@@ -85,8 +85,9 @@ body {
 
 .contact-popup {
   position: fixed;
-  top: 50px; 
-  right: 1rem;
+  top: vars.$header-height;
+  left: 50%;
+  transform: translateX(-50%);
   background: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -95,13 +96,17 @@ body {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  width: 90%;
+  margin-top: 0.2rem;
 
   .contact {
     display: flex;
     align-items: center;
     gap: 10px;
     color: vars.$color-dark-text;
+    font-weight: bold;
+    font-size: 1.8rem;
     text-decoration: none;
   }
 
