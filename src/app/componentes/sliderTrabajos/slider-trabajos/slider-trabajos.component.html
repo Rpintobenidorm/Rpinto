@@ -1,0 +1,9 @@
+<div id="sliderTrabajos" class="slider-fullscreen">
+  <div class="swiper" #sliderTrabajos>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let img of imageNames">
+        <img [src]="'assets/slider/' + img" [alt]="img" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</div>

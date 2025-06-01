@@ -10,11 +10,13 @@ import { OpinionesComponent } from './componentes/opiniones/opiniones.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faPhone,
+  faDirections,
   faEnvelope,
   faMobileAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { NgClickOutsideDirective } from 'ng-click-outside2';
+import { SliderTrabajosComponent } from "./componentes/sliderTrabajos/slider-trabajos/slider-trabajos.component";
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,8 @@ import { NgClickOutsideDirective } from 'ng-click-outside2';
     OpinionesComponent,
     FontAwesomeModule,
     NgClickOutsideDirective,
-  ],
+    SliderTrabajosComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -39,6 +42,7 @@ export class AppComponent {
   iconoWhatsapp = faWhatsapp;
   iconoCorreo = faEnvelope;
   iconoMovil = faMobileAlt;
+  faDirections = faDirections;
 
   isContactoInfoVisible = false;
 

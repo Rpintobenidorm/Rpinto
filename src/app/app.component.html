@@ -42,14 +42,18 @@
   (clickOutside)="onClickedOutsideContacto($event)"
 >
   <a class="contact" href="tel:965053399">
-    <fa-icon [icon]="iconoTelefono"></fa-icon><span>965053399</span>
+    <fa-icon [icon]="iconoTelefono"></fa-icon><span> 965 053 399</span>
   </a>
   <a class="contact" href="tel:688888888">
-    <fa-icon [icon]="iconoMovil"></fa-icon><span>688 888 888</span>
+    <fa-icon [icon]="iconoMovil"></fa-icon><span> 664 777 366</span>
   </a>
   <a class="contact" href="mailto:info@rpinto.es">
-    <fa-icon [icon]="iconoCorreo"></fa-icon><span>info&#64;rpinto.es</span>
+    <fa-icon [icon]="iconoCorreo"></fa-icon><span> info&#64;rpinto.es</span>
   </a>
+<a class="contact" href="https://maps.app.goo.gl/1xYjgnQLBUogsJEj7" target="_blank">
+  <fa-icon [icon]="faDirections"></fa-icon>
+  <span> Avenida Emilio Ortuño, 28</span>
+</a>
 </div>
 }
 
@@ -61,11 +65,7 @@
 ></button>
 
 <!-- Drawer nav -->
-<nav
-  #drawer
-  class="sub-menu"
-  [class.oppenned]="isMenuOpen"
->
+<nav #drawer class="sub-menu" [class.oppenned]="isMenuOpen">
   <ul class="list-unstyled">
     <li>
       <a
@@ -152,13 +152,15 @@
     <app-nosotros />
   </section>
 
-  <section id="proyectos" class="seccion">
-    <app-opiniones />
+  <section id="proyectos">
+    <h1 class="my-4 mx-4">Nuestros trabajos</h1>
+    <app-slider-trabajos/>
   </section>
 
   <section id="contacto" class="seccion">
     <h2>Contacto</h2>
     <p>Puedes contactarme aquí.</p>
+    <app-opiniones />
   </section>
 </main>
 

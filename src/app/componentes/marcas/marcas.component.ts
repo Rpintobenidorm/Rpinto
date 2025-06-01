@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import Swiper from 'swiper';
+import { Autoplay, FreeMode } from 'swiper/modules';
+
+Swiper.use([Autoplay, FreeMode]);
 
 @Component({
   selector: 'app-marcas',
@@ -7,7 +10,11 @@ import Swiper from 'swiper';
   templateUrl: './marcas.component.html',
   styleUrl: './marcas.component.scss',
 })
+
+
+
 export class MarcasComponent {
+  
   ngAfterViewInit(): void {
     setTimeout(() => {
       // Slider de marcas
@@ -18,7 +25,7 @@ export class MarcasComponent {
         speed:4000, // velocidad de deslizamiento (cuanto más alto, más suave)
         autoplay: {
           delay: 0, // empieza inmediatamente
-          disableOnInteraction: true,
+          disableOnInteraction: false,
           pauseOnMouseEnter: false,
         },
         freeMode: {
