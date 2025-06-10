@@ -1,0 +1,169 @@
+<div id="ContactInformation">
+  <a class="contact contactFixedPhone" href="tel:965053399">
+    <fa-icon [icon]="iconoTelefono" class="icono-blanco"></fa-icon>
+    <span>965053399</span></a
+  >
+  <a class="contact contactMovilePhone" href="tel:667660544">
+    <fa-icon [icon]="iconoMovil" class="icono-blanco"></fa-icon>
+    <span>688 888 888</span></a
+  >
+  <a
+    class="contact contactWhatsapp"
+    target="_blank"
+    href="https://api.whatsapp.com/send?phone=34686601702"
+  >
+    <fa-icon [icon]="iconoWhatsapp" class="icono-blanco"></fa-icon>
+    <span class="hidden-xs contact">688 888 888</span>
+  </a>
+  <a class="contact contactEmail" href="mailto:info@rpinto.es">
+    <fa-icon [icon]="iconoCorreo" class="icono-blanco"></fa-icon
+    ><span class="contact email">info&#64;rpinto.es</span>
+  </a>
+</div>
+
+<header
+  class="header d-flex justify-content-around align-items-center px-3 py-2"
+>
+  <!-- Botón hamburguesa solo en móvil -->
+  <button class="burger-btn" (click)="isMenuOpen = !isMenuOpen">☰</button>
+  <a [routerLink]="[]" fragment="slider" class="logo-link d-inline-block">
+    <img src="assets/logo.png" alt="Logo RPinto" class="logo-img" />
+  </a>
+  <button class="contact-toggle-btn d-md-none" (click)="toggleContactoInfo()">
+    <fa-icon [icon]="iconoTelefono"></fa-icon>
+  </button>
+</header>
+
+<!--Menu contacto movil -->
+@if (isContactoInfoVisible) {
+<div
+  #popupContacto
+  class="contact-popup"
+  (clickOutside)="onClickedOutsideContacto($event)"
+>
+  <a class="contact" href="tel:965053399">
+    <fa-icon [icon]="iconoTelefono"></fa-icon><span> 965 053 399</span>
+  </a>
+  <a class="contact" href="tel:688888888">
+    <fa-icon [icon]="iconoMovil"></fa-icon><span> 664 777 366</span>
+  </a>
+  <a class="contact" href="mailto:info@rpinto.es">
+    <fa-icon [icon]="iconoCorreo"></fa-icon><span> info&#64;rpinto.es</span>
+  </a>
+<a class="contact" href="https://maps.app.goo.gl/1xYjgnQLBUogsJEj7" target="_blank">
+  <fa-icon [icon]="faDirections"></fa-icon>
+  <span> Avenida Emilio Ortuño, 28</span>
+</a>
+</div>
+}
+
+<!-- Botón hamburguesa -->
+<button
+  class="c-hamburger c-hamburger--htx"
+  (click)="toggleMenu()"
+  [class.is-active]="isMenuOpen"
+></button>
+
+<!-- Drawer nav -->
+<nav #drawer class="sub-menu" [class.oppenned]="isMenuOpen">
+  <ul class="list-unstyled">
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="slider"
+        (click)="closeMenu()"
+        [class.active]="activeSection === 'slider'"
+        >Inicio</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="sobrenosotros"
+        (click)="closeMenu()"
+        [class.active]="activeSection === 'sobrenosotros'"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="proyectos"
+        (click)="closeMenu()"
+        [class.active]="activeSection === 'proyectos'"
+        >Proyectos</a
+      >
+    </li>
+  <!--<li>
+      <a
+        [routerLink]="[]"
+        fragment="contacto"
+        (click)="closeMenu()"
+        [class.active]="activeSection === 'contacto'"
+        >Contacto</a
+      >
+    </li>-->
+  </ul>
+</nav>
+
+<nav class="navbar d-none d-md-flex">
+  <ul class="list-unstyled d-flex m-0">
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="slider"
+        [class.active]="activeSection === 'slider'"
+        >Inicio</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="sobrenosotros"
+        [class.active]="activeSection === 'sobrenosotros'"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="proyectos"
+        [class.active]="activeSection === 'proyectos'"
+        >Nuestros servicios</a
+      >
+    </li>
+    <!--<li>
+      <a
+        [routerLink]="[]"
+        fragment="contacto"
+        [class.active]="activeSection === 'contacto'"
+        >Contacto</a
+      >
+    </li>-->
+  </ul>
+</nav>
+
+<main>
+  <section id="slider" class="seccion-slider">
+    <app-slider />
+  </section>
+
+  <section id="sobrenosotros" class="seccion">
+    <app-nosotros />
+  </section>
+
+  <section id="proyectos">
+    <h1 class="my-4 text-center">Nuestros trabajos</h1>
+    <app-slider-trabajos/>
+  </section>
+
+<!--<section id="contacto" class="seccion">
+    <h2>Contacto</h2>
+    <p>Puedes contactarme aquí.</p>
+    <app-opiniones />
+  </section>-->
+</main>
+
+<footer class="footer">
+  <p>&copy; Made by <a href="mailto:mhaskimr@gmail.com">MHH</a> &#64;2025</p>
+</footer>

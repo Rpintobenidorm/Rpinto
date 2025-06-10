@@ -1,0 +1,345 @@
+@use "../../../styles.variables.scss" as vars;
+
+// ================= BASE STYLES =================
+html,
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: vars.$combined-height;
+  background-color: vars.$color-light-bg;
+}
+
+// ================= Cabecera Contacto =================
+#ContactInformation {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 20px;
+  background-color: #3082d4;
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  .contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  .icono-blanco {
+    color: white;
+    font-size: 24px;
+  }
+
+}
+@media (max-width: 768px) {
+  #ContactInformation {
+    display: none;
+  }
+  .header {
+    top: 0 !important;
+  }
+}
+
+// ================= HEADER =================
+.header {
+  background-color: vars.$color-r;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: vars.$header-height;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  z-index: 1050;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 100px;
+    width: auto;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.contact-popup {
+  position: fixed;
+  top: vars.$header-height;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+  margin-top: 0.2rem;
+
+  .contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: vars.$color-dark-text;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-decoration: none;
+  }
+
+  fa-icon {
+    color: vars.$color-pinto;
+  }
+}
+
+.contact-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: vars.$color-pinto;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+// ================= NAVBAR =================
+.navbar {
+  background-color: vars.$color-pinto;
+  position: fixed;
+  top: vars.$combined-height;
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1040;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+      color: vars.$color-r;
+    }
+
+    &.active {
+      color: vars.$color-pinto;
+      border-bottom: 2px solid vars.$color-pinto;
+    }
+  }
+
+  // === Estilo para pantallas grandes ===
+  @media (min-width: 769px) {
+    ul {
+      display: flex;
+
+      li {
+        margin: 0 1rem;
+      }
+
+      a {
+        margin: 0 1rem;
+      }
+    }
+  }
+
+  // === Estilo para móviles ===
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0;
+
+    &.open {
+      height: 500px;
+      padding: 1rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    li {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+// ================= BURGER BUTTON =================
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: vars.$color-pinto;
+  cursor: pointer;
+  position: absolute;
+  left: 1rem;
+  z-index: 1060;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+// ================= SECTIONS =================
+.seccion {
+  min-height: 100vh;
+  padding:2rem;
+  scroll-margin-top: vars.$combined-height;
+
+  h2 {
+    color: vars.$color-pinto;
+  }
+  .container {
+    width: 100%;
+  }
+
+  &#slider {
+    background-color: #f8f9fa;
+  }
+
+  &#sobrenosotros {
+    background-color: #e9ecef;
+  }
+
+  &#proyectos {
+    background-color: #dee2e6;
+  }
+
+  &#contacto {
+    background-color: #ced4da;
+  }
+}
+
+// ================= FOOTER =================
+.footer {
+  background-color: vars.$color-r;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+// ================= DRAWER MENU (MOVIL) =================
+@media (max-width: 768px) {
+  .sub-menu {
+    position: fixed;
+    top: vars.$header-height; // empieza justo debajo del header
+    left: -210px;
+    height: calc(100vh - #{vars.$header-height}); // ocupa el resto
+    width: 210px;
+    background-color: vars.$color-r;
+    transition: all 0.3s ease;
+    z-index: 1045;
+    overflow-y: auto;
+    padding: 1rem;
+
+    &.oppenned {
+      left: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    li {
+      margin: 1rem 0;
+
+      a {
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 30px;
+
+        &:hover {
+          color: vars.$color-pinto;
+        }
+
+        &.active {
+          color: vars.$color-pinto;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  .hero-images {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 90vh;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    margin-top: -10vh;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    background-color: #ffffff;
+    padding: 24px;
+  }
+}
