@@ -1,3 +1,30 @@
+<div class="home-container">
+  <!-- Bloque de imágenes fijas (slider) -->
+  <div class="hero-images">
+    <section id="slider">
+      <app-slider />
+    </section>
+  </div>
+
+  <!-- Contenido principal desplazable -->
+  <div class="content">
+    <section id="sobrenosotros" class="seccion">
+      <app-nosotros />
+    </section>
+    <section id="marcas">
+      <app-marcas />
+    </section>
+    <section id="proyectos">
+      <app-slider-trabajos />
+    </section>
+  </div>
+  <footer class="footer">
+    <p>&copy;<a href="mailto:mhaskimr@gmail.com">MHH</a></p>
+  </footer>
+</div>
+
+<!-------------------------------------------------PC------------------------------------------->
+<!-- Cabecera contacto pc -->
 <div id="ContactInformation">
   <a class="contact contactFixedPhone" href="tel:965053399">
     <fa-icon [icon]="iconoTelefono" class="icono-blanco"></fa-icon>
@@ -21,10 +48,48 @@
   </a>
 </div>
 
+<nav class="navbar d-none d-md-flex">
+  <ul class="list-unstyled d-flex m-0">
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="slider"
+        [class.active]="activeSection === 'slider'"
+        >Inicio</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="sobrenosotros"
+        [class.active]="activeSection === 'sobrenosotros'"
+        >Sobre nosotros</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="proyectos"
+        [class.active]="activeSection === 'proyectos'"
+        >Nuestros servicios</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLink]="[]"
+        fragment="marcas"
+        [class.active]="activeSection === 'marcas'"
+        >Nuestras Marcas</a
+      >
+    </li>
+  </ul>
+</nav>
+<!-------------------------------------------------PC------------------------------------------->
+<!-------------------------------------------------MOVIL------------------------------------------->
+<!-- Botón hamburguesa solo en móvil -->
 <header
   class="header d-flex justify-content-around align-items-center px-3 py-2"
 >
-  <!-- Botón hamburguesa solo en móvil -->
   <button class="burger-btn" (click)="isMenuOpen = !isMenuOpen">☰</button>
   <a [routerLink]="[]" fragment="slider" class="logo-link d-inline-block">
     <img src="assets/logo.png" alt="Logo RPinto" class="logo-img" />
@@ -67,7 +132,6 @@
   (click)="toggleMenu()"
   [class.is-active]="isMenuOpen"
 ></button>
-
 <!-- Drawer nav -->
 <nav #drawer class="sub-menu" [class.oppenned]="isMenuOpen">
   <ul class="list-unstyled">
@@ -98,76 +162,15 @@
         >Proyectos</a
       >
     </li>
-    <!--<li>
+    <li>
       <a
         [routerLink]="[]"
-        fragment="contacto"
+        fragment="marcas"
         (click)="closeMenu()"
-        [class.active]="activeSection === 'contacto'"
-        >Contacto</a
+        [class.active]="activeSection === 'marcas'"
+        >Nuestras Marcas</a
       >
-    </li>-->
+    </li>
   </ul>
 </nav>
-
-<nav class="navbar d-none d-md-flex">
-  <ul class="list-unstyled d-flex m-0">
-    <li>
-      <a
-        [routerLink]="[]"
-        fragment="slider"
-        [class.active]="activeSection === 'slider'"
-        >Inicio</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLink]="[]"
-        fragment="sobrenosotros"
-        [class.active]="activeSection === 'sobrenosotros'"
-        >Sobre nosotros</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLink]="[]"
-        fragment="proyectos"
-        [class.active]="activeSection === 'proyectos'"
-        >Nuestros servicios</a
-      >
-    </li>
-    <!--<li>
-      <a
-        [routerLink]="[]"
-        fragment="contacto"
-        [class.active]="activeSection === 'contacto'"
-        >Contacto</a
-      >
-    </li>-->
-  </ul>
-</nav>
-
-<div class="home-container">
-  <!-- Bloque de imágenes fijas (slider) -->
-  <div class="hero-images">
-    <section id="slider" class="seccion-slider">
-      <app-slider />
-    </section>
-  </div>
-
-  <!-- Contenido principal desplazable -->
-  <div class="content">
-    <div class="content-inner">
-      <section id="sobrenosotros" class="seccion">
-        <app-nosotros />
-      </section>
-      <section id="proyectos">
-        <app-slider-trabajos />
-      </section>
-    </div>
-  </div>
-  <footer class="footer">
-  <p>&copy; Made by <a href="mailto:mhaskimr@gmail.com">MHH</a> &#64;2025</p>
-</footer>
-</div>
-
+<!-------------------------------------------------MOVIL------------------------------------------->

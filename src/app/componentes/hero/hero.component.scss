@@ -229,7 +229,6 @@ body {
 // ================= SECTIONS =================
 .seccion {
   min-height: 100vh;
-  padding:2rem;
   scroll-margin-top: vars.$combined-height;
 
   h2 {
@@ -241,10 +240,6 @@ body {
 
   &#slider {
     background-color: #f8f9fa;
-  }
-
-  &#sobrenosotros {
-    background-color: #e9ecef;
   }
 
   &#proyectos {
@@ -313,9 +308,6 @@ body {
   }
 }
 
-
-
-
 .home-container {
   position: relative;
   width: 100%;
@@ -336,10 +328,9 @@ body {
   .content {
     position: relative;
     z-index: 2;
-    margin-top: -10vh;
+    margin-top: -5vh;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
     background-color: #ffffff;
-    padding: 24px;
   }
 }

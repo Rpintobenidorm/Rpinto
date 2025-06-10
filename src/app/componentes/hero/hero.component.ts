@@ -2,9 +2,9 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
-import { SliderComponent } from "../slider/slider.component";
-import { NosotrosComponent } from "../nosotros/nosotros.component";
-import { SliderTrabajosComponent } from "../sliderTrabajos/slider-trabajos.component";
+import { SliderComponent } from '../slider/slider.component';
+import { NosotrosComponent } from '../nosotros/nosotros.component';
+import { SliderTrabajosComponent } from '../sliderTrabajos/slider-trabajos.component';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,15 +16,25 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { NgClickOutsideDirective } from 'ng-click-outside2';
+import { MarcasComponent } from '../marcas/marcas.component';
 
 @Component({
   selector: 'app-hero',
-  imports: [NgClickOutsideDirective, RouterModule, FontAwesomeModule, CommonModule, SliderComponent, NosotrosComponent, SliderTrabajosComponent],
+  imports: [
+    NgClickOutsideDirective,
+    RouterModule,
+    FontAwesomeModule,
+    CommonModule,
+    SliderComponent,
+    NosotrosComponent,
+    SliderTrabajosComponent,
+    MarcasComponent,
+  ],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss'
+  styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
-title = 'rpinto';
+  title = 'rpinto';
 
   activeSection: string = 'slider';
   isMenuOpen = false;
@@ -57,15 +67,15 @@ title = 'rpinto';
 
   ngAfterViewInit(): void {
     AOS.init({
-      duration: 1000, // duración de las animaciones en ms
-      once: true, // si quieres que solo se animen una vez
+      duration: 1000,
+      once: false,
     });
   }
 
   // Scrollspy
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const sections = ['slider', 'sobrenosotros', 'proyectos', 'contacto'];
+    const sections = ['slider', 'sobrenosotros', 'proyectos', 'marcas'];
     for (const section of sections) {
       const el = document.getElementById(section);
       if (el) {
