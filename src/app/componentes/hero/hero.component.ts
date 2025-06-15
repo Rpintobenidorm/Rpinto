@@ -14,7 +14,7 @@ import {
   faEnvelope,
   faMobileAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp, faInstagram, faFacebook, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { NgClickOutsideDirective } from 'ng-click-outside2';
 import { MarcasComponent } from '../marcas/marcas.component';
 
@@ -44,10 +44,15 @@ export class HeroComponent {
   iconoCorreo = faEnvelope;
   iconoMovil = faMobileAlt;
   faDirections = faDirections;
+  iconoInstragram = faInstagram;
+  iconoFacebook = faFacebook
+  iconotuiter = faXTwitter
 
   isContactoInfoVisible = false;
 
   @ViewChild('drawer', { static: false }) drawerRef!: ElementRef;
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
+  private scrollListener = this.onDivScroll.bind(this);
 
   constructor(
     private router: Router,
@@ -70,22 +75,37 @@ export class HeroComponent {
       duration: 1000,
       once: false,
     });
+
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.addEventListener(
+        'scroll',
+        this.scrollListener
+      );
+    }
   }
 
-  // Scrollspy
-  @HostListener('window:scroll', [])
-  onWindowScroll(): void {
-    const sections = ['slider', 'sobrenosotros', 'proyectos', 'marcas'];
-    for (const section of sections) {
-      const el = document.getElementById(section);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          this.activeSection = section;
-          break;
-        }
-      }
+  ngOnDestroy(): void {
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.removeEventListener(
+        'scroll',
+        this.scrollListener
+      );
     }
+  }
+
+  onDivScroll(): void {
+    this.isContactoInfoVisible = false;
+    this.closeMenu();
+  }
+
+  scrollToSection(sectionId: string) {
+    const el = document.getElementById(sectionId);
+    console.log(el);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.activeSection = sectionId;
+    }
+    this.closeMenu();
   }
 
   closeMenu() {

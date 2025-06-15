@@ -1,4 +1,4 @@
-<div class="home-container">
+<div class="home-container" #scrollContainer>
   <!-- Bloque de imágenes fijas (slider) -->
   <div class="hero-images">
     <section id="slider">
@@ -52,32 +52,32 @@
   <ul class="list-unstyled d-flex m-0">
     <li>
       <a
-        [routerLink]="[]"
-        fragment="slider"
+        href="javascript:void(0)"
+        (click)="scrollToSection('slider')"
         [class.active]="activeSection === 'slider'"
         >Inicio</a
       >
     </li>
     <li>
       <a
-        [routerLink]="[]"
-        fragment="sobrenosotros"
+        href="javascript:void(0)"
+        (click)="scrollToSection('sobrenosotros')"
         [class.active]="activeSection === 'sobrenosotros'"
         >Sobre nosotros</a
       >
     </li>
     <li>
       <a
-        [routerLink]="[]"
-        fragment="proyectos"
+        href="javascript:void(0)"
+        (click)="scrollToSection('proyectos')"
         [class.active]="activeSection === 'proyectos'"
         >Nuestros servicios</a
       >
     </li>
     <li>
       <a
-        [routerLink]="[]"
-        fragment="marcas"
+        href="javascript:void(0)"
+        (click)="scrollToSection('marcas')"
         [class.active]="activeSection === 'marcas'"
         >Nuestras Marcas</a
       >
@@ -100,10 +100,19 @@
 </header>
 
 <!--Menu contacto movil -->
+
+<!-- Backdrop -->
+<div
+  class="contact-backdrop"
+  *ngIf="isContactoInfoVisible"
+  (click)="isContactoInfoVisible = false"
+></div>
+
 @if (isContactoInfoVisible) {
 <div
   #popupContacto
   class="contact-popup"
+  [class.oppenned]="isContactoInfoVisible"
   (clickOutside)="onClickedOutsideContacto($event)"
 >
   <a class="contact" href="tel:965053399">
@@ -121,7 +130,7 @@
     target="_blank"
   >
     <fa-icon [icon]="faDirections"></fa-icon>
-    <span> Avenida Emilio Ortuño, 28</span>
+    <span> Benidorm, Avenida Emilio Ortuño</span>
   </a>
 </div>
 }
@@ -132,45 +141,43 @@
   (click)="toggleMenu()"
   [class.is-active]="isMenuOpen"
 ></button>
+
+<!-- Drawer nav -->
+<!-- Backdrop -->
+<div
+  class="drawer-backdrop"
+  *ngIf="isMenuOpen"
+  (click)="closeMenu()"
+></div>
+
 <!-- Drawer nav -->
 <nav #drawer class="sub-menu" [class.oppenned]="isMenuOpen">
-  <ul class="list-unstyled">
+  <ul class="nav-links">
     <li>
-      <a
-        [routerLink]="[]"
-        fragment="slider"
-        (click)="closeMenu()"
-        [class.active]="activeSection === 'slider'"
-        >Inicio</a
-      >
+      <a href="javascript:void(0)" (click)="scrollToSection('slider')" [class.active]="activeSection === 'slider'">Inicio</a>
     </li>
     <li>
-      <a
-        [routerLink]="[]"
-        fragment="sobrenosotros"
-        (click)="closeMenu()"
-        [class.active]="activeSection === 'sobrenosotros'"
-        >Sobre nosotros</a
-      >
+      <a href="javascript:void(0)" (click)="scrollToSection('sobrenosotros')" [class.active]="activeSection === 'sobrenosotros'">Sobre nosotros</a>
     </li>
     <li>
-      <a
-        [routerLink]="[]"
-        fragment="proyectos"
-        (click)="closeMenu()"
-        [class.active]="activeSection === 'proyectos'"
-        >Proyectos</a
-      >
+      <a href="javascript:void(0)" (click)="scrollToSection('proyectos')" [class.active]="activeSection === 'proyectos'">Proyectos</a>
     </li>
     <li>
-      <a
-        [routerLink]="[]"
-        fragment="marcas"
-        (click)="closeMenu()"
-        [class.active]="activeSection === 'marcas'"
-        >Nuestras Marcas</a
-      >
+      <a href="javascript:void(0)" (click)="scrollToSection('marcas')" [class.active]="activeSection === 'marcas'">Nuestras Marcas</a>
     </li>
   </ul>
+
+  <!-- Footer social icons -->
+  <div class="drawer-footer">
+    <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+      <fa-icon [icon]="iconoInstragram"></fa-icon>
+    </a>
+    <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
+      <fa-icon [icon]="iconoFacebook"></fa-icon>
+    </a>
+    <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+      <fa-icon [icon]="iconotuiter"></fa-icon>
+    </a>
+  </div>
 </nav>
 <!-------------------------------------------------MOVIL------------------------------------------->
